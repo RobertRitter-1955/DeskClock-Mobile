@@ -1,4 +1,5 @@
-let lastWeather = "☁ -- °C";
+let lastWeather =
+    localStorage.getItem("lastWeather") || "☁ -- °C";
 
 
 function updateClock() {
@@ -119,6 +120,10 @@ async function updateWeather() {
 
         lastWeather =
             `${icon} ${temp} °C`;
+localStorage.setItem(
+    "lastWeather",
+    lastWeather
+);
 
 
         document.getElementById("weather").textContent =
@@ -142,6 +147,9 @@ setInterval(updateClock, 1000);
 updateClock();
 
 updateDate();
+
+document.getElementById("weather").textContent =
+    lastWeather;
 
 updateWeather();
 
